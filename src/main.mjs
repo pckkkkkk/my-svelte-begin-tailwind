@@ -1,5 +1,5 @@
-import '@/assets/css/tailwind.css'
-import '@/assets/css/global.css'
+import '@app/assets/css/tailwind.css'
+import '@app/assets/css/global.css'
 
 import App from './App.svelte'
 

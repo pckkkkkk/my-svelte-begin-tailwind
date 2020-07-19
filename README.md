@@ -1,8 +1,11 @@
-Looking for the original template? Here you go: https://github.com/sveltejs/template
+Looking for the original svelte template? Here you go: https://github.com/sveltejs/template
+
+Or the original begin one?
+https://github.com/Rich-Harris/begin-svelte-app
 ---
 
 ```bash
-npx degit pckkkkkk/my-svelte-tailwind myapp
+npx degit pckkkkkk/my-svelte-begin-tailwind myapp
 cd myapp
 npm i
 ```

@@ -5,13 +5,11 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import postcss from 'rollup-plugin-postcss';
-import alias from '@rollup/plugin-alias';
-import path from 'path';
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: 'src/main.js',
+	input: 'src/main.mjs',
 	output: {
 		sourcemap: true,
 		format: 'iife',
@@ -36,15 +34,6 @@ export default {
 			extract: 'public/build/utils.css',
 		}),
 		
-		alias({
-			entries: [
-				{
-					find: "@",
-					replacement: path.resolve(__dirname, 'src/')
-				}
-			]
-		}),
-		
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration -
@@ -55,10 +44,6 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
-		
-		// In dev mode, call `npm run start` once
-		// the bundle has been generated
-		!production && serve(),
 		
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
@@ -73,19 +58,3 @@ export default {
 	}
 };
 
-function serve() {
-	let started = false;
-	
-	return {
-		writeBundle() {
-			if (!started) {
-				started = true;
-				
-				require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-					stdio: ['ignore', 'inherit', 'inherit'],
-					shell: true
-				});
-			}
-		}
-	};
-}
